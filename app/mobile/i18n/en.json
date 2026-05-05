@@ -1,0 +1,70 @@
+{
+  "home": {
+    "title": "Sufra",
+    "subtitle": "Authentic Levantine Kitchen",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "allDay": "All Day",
+    "categories": {
+      "manaeesh": "Mana'eesh",
+      "sandwiches": "Sandwiches",
+      "plates": "Plates",
+      "mezze": "Mezze",
+      "salads": "Salads",
+      "sweets": "Sweets",
+      "drinks": "Drinks",
+      "coffee_tea": "Coffee & Tea"
+    }
+  },
+  "menu": {
+    "title": "Menu",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "addToCart": "Add to Cart",
+    "noItems": "No items found"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Place Order",
+    "remove": "Remove"
+  },
+  "chatbot": {
+    "title": "Sufra Assistant",
+    "placeholder": "Ask me anything...",
+    "send": "Send",
+    "greeting": "Marhaba! I'm Sufra's assistant. How can I help you today?"
+  },
+  "profile": {
+    "title": "Profile",
+    "language": "Language",
+    "orders": "My Orders",
+    "reservations": "My Reservations",
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "reservation": {
+    "title": "Reservations",
+    "date": "Date",
+    "time": "Time",
+    "guests": "Number of Guests",
+    "name": "Your Name",
+    "submit": "Book Table",
+    "success": "Reservation confirmed!",
+    "minGuests": "Minimum 6 guests required"
+  },
+  "item": {
+    "ingredients": "Ingredients",
+    "allergens": "Allergens",
+    "dietTags": "Dietary Info",
+    "modifications": "Customise",
+    "variants": "Choose Size",
+    "addToCart": "Add to Cart"
+  },
+  "common": {
+    "back": "Back",
+    "loading": "Loading...",
+    "error": "Something went wrong"
+  }
+}

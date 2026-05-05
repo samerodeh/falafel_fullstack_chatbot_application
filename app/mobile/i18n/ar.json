@@ -1,0 +1,70 @@
+{
+  "home": {
+    "title": "سفرة",
+    "subtitle": "مطبخ شامي أصيل",
+    "breakfast": "فطور",
+    "lunch": "غداء",
+    "allDay": "طوال اليوم",
+    "categories": {
+      "manaeesh": "معجنات",
+      "sandwiches": "ساندويشات",
+      "plates": "أطباق",
+      "mezze": "مزة",
+      "salads": "سلطات",
+      "sweets": "حلويات",
+      "drinks": "مشروبات",
+      "coffee_tea": "قهوة وشاي"
+    }
+  },
+  "menu": {
+    "title": "القائمة",
+    "available": "متاح",
+    "unavailable": "غير متاح",
+    "addToCart": "أضف للسلة",
+    "noItems": "لا توجد عناصر"
+  },
+  "cart": {
+    "title": "سلتك",
+    "empty": "سلتك فارغة",
+    "total": "المجموع",
+    "checkout": "تأكيد الطلب",
+    "remove": "حذف"
+  },
+  "chatbot": {
+    "title": "مساعد سفرة",
+    "placeholder": "اسألني أي شيء...",
+    "send": "إرسال",
+    "greeting": "مرحبا! أنا مساعد سفرة. كيف يمكنني مساعدتك اليوم؟"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "language": "اللغة",
+    "orders": "طلباتي",
+    "reservations": "حجوزاتي",
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  },
+  "reservation": {
+    "title": "الحجوزات",
+    "date": "التاريخ",
+    "time": "الوقت",
+    "guests": "عدد الضيوف",
+    "name": "اسمك",
+    "submit": "احجز طاولة",
+    "success": "تم تأكيد الحجز!",
+    "minGuests": "الحد الأدنى 6 ضيوف"
+  },
+  "item": {
+    "ingredients": "المكونات",
+    "allergens": "مسببات الحساسية",
+    "dietTags": "معلومات غذائية",
+    "modifications": "تخصيص",
+    "variants": "اختر الحجم",
+    "addToCart": "أضف للسلة"
+  },
+  "common": {
+    "back": "رجوع",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ ما"
+  }
+}
