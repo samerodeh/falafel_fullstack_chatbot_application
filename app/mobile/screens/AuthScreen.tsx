@@ -86,7 +86,14 @@ export default function AuthScreen({ onAuth }: Props) {
           : { email: email.trim(), password };
 
       const res = await axios.post(url, payload);
-      onAuth(res.data.userId, res.data.name);
+      if (mode === "signup") {
+        reset();
+        setMode("login");
+        setError("");
+        Alert.alert("Account created!", "Please log in with your new account.");
+      } else {
+        onAuth(res.data.userId, res.data.name);
+      }
     } catch (err: any) {
       const msg =
         err.response?.data?.detail || "Something went wrong. Please try again.";

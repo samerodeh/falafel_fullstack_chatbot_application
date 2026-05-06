@@ -5,6 +5,15 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
+from db.user_db import (
+    db_get_user_profile,
+    db_update_user_profile,
+    db_add_favorite,
+    db_remove_favorite,
+    db_set_favorites,
+    db_append_order_to_history,
+    db_set_usual_order,
+)
 
 STORE_FILE = os.path.join(os.path.dirname(__file__), "runtime_store.json")
 _LOCK = threading.Lock()
@@ -50,71 +59,24 @@ def _with_lock(fn):
     return wrapper
 
 
-@_with_lock
 def get_user_profile(user_id: str) -> Dict[str, Any]:
-    store = _load_store()
-    users = store["users"]
-    if user_id not in users:
-        users[user_id] = {
-            "userId": user_id,
-            "languagePreference": "auto",
-            "dietaryProfile": {"halal": False, "vegan": False, "allergies": []},
-            "theme": "system",
-            "voiceEnabled": False,
-            "favorites": [],
-            "usualOrderPreset": [],
-            "orderHistory": [],
-            "updatedAt": _now_iso(),
-        }
-        _save_store(store)
-    return users[user_id]
+    return db_get_user_profile(user_id)
 
 
-@_with_lock
 def update_user_profile(user_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-    store = _load_store()
-    profile = get_user_profile(user_id)
-    profile.update(payload)
-    profile["updatedAt"] = _now_iso()
-    store["users"][user_id] = profile
-    _save_store(store)
-    return profile
+    return db_update_user_profile(user_id, payload)
 
 
-@_with_lock
 def set_favorites(user_id: str, favorites: List[str]) -> List[str]:
-    store = _load_store()
-    profile = get_user_profile(user_id)
-    profile["favorites"] = list[str](dict.fromkeys(favorites))
-    profile["updatedAt"] = _now_iso()
-    store["users"][user_id] = profile
-    _save_store(store)
-    return profile["favorites"]
+    return db_set_favorites(user_id, favorites)
 
 
-@_with_lock
 def add_favorite(user_id: str, item_id: str) -> List[str]:
-    store = _load_store()
-    profile = get_user_profile(user_id)
-    favorites = profile.get("favorites", [])
-    if item_id not in favorites:
-        favorites.append(item_id)
-    profile["favorites"] = favorites
-    profile["updatedAt"] = _now_iso()
-    store["users"][user_id] = profile
-    _save_store(store)
-    return favorites
+    return db_add_favorite(user_id, item_id)
 
 
-@_with_lock
 def remove_favorite(user_id: str, item_id: str) -> List[str]:
-    store = _load_store()
-    profile = get_user_profile(user_id)
-    profile["favorites"] = [x for x in profile.get("favorites", []) if x != item_id]
-    profile["updatedAt"] = _now_iso()
-    store["users"][user_id] = profile
-    _save_store(store)
-    return profile["favorites"]
+    return db_remove_favorite(user_id, item_id)
 
 
 @_with_lock
@@ -183,11 +145,8 @@ def create_order(order_payload: Dict[str, Any]) -> Dict[str, Any]:
         "updatedAt": _now_iso(),
     }
     store["orders"][order_id] = order
-    profile = get_user_profile(order["userId"])
-    profile["orderHistory"].append(order_id)
-    profile["updatedAt"] = _now_iso()
-    store["users"][order["userId"]] = profile
     _save_store(store)
+    db_append_order_to_history(order["userId"], order_id)
     return order
 
 
@@ -240,12 +199,5 @@ def create_reservation(payload: Dict[str, Any]) -> Dict[str, Any]:
     return reservation
 
 
-@_with_lock
 def set_usual_order(user_id: str, usual_items: List[Dict[str, Any]]) -> Dict[str, Any]:
-    store = _load_store()
-    profile = get_user_profile(user_id)
-    profile["usualOrderPreset"] = usual_items
-    profile["updatedAt"] = _now_iso()
-    store["users"][user_id] = profile
-    _save_store(store)
-    return profile
+    return db_set_usual_order(user_id, usual_items)

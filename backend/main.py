@@ -12,12 +12,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from data_store import seed_promotions, get_promotions
+from db.user_db import init_db
 from rag import build_index
 # other imports
 import json
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    init_db()
     build_index()
     yield
 
